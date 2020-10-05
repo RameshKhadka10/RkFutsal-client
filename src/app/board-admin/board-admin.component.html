@@ -1,5 +1,27 @@
-<div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
+<div style="width: 100% ;">
+  <h2>RK Futsal Reservation Management</h2>
+  <input type="string" style="width: 60%; height: 40px; position: relative;" [(ngModel)]="username" placeholder="Enter customer name">
+  <button type="button" style="height: 40px; margin-left: 20px;position: relative;" class="btn btn-outline-primary" (click)="getUser()">customer reservations</button>
+
+  <button type="button" style=" height: 40px; margin-left: 20px; position: relative;" class="btn btn-outline-secondary" (click)="getAllUsers()">Get all reservations</button>
+
+  <div *ngIf="user">
+    customer name is {{user.username}}. He has the following reservations :
+    <ul>
+      <li *ngFor="let reserves of user.reservations">
+        Date: {{reserves.date | date}} Starting Time: {{reserves.startingTime}} Ending Time: {{reserves.endTime}}.
+      </li>
+    </ul>
   </div>
+
+  <div *ngIf="users" >
+    <hr>
+<div *ngFor= "let user of users">
+    <ul>
+      <li *ngFor="let reserves of user.reservations;">
+        customer name : {{user.username}} date: {{reserves.date | date}} Starting Time: {{reserves.startingTime}} Ending Time: {{reserves.endTime}}
+      </li>
+    </ul>
+  </div>
+  </div>
+</div>

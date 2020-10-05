@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+
+import { ReservationService } from '../_services/reservation.service';
+
+import {Users} from '../models/users';
+
+
+
 
 @Component({
   selector: 'app-board-admin',
@@ -8,19 +14,34 @@ import { UserService } from '../_services/user.service';
 })
 export class BoardAdminComponent implements OnInit {
 
-  content: string;
+  public username: string;
+  public user: Users;
 
-  constructor(private userService: UserService) { }
+ public users: Users[];
+
+ 
+
+  constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
-    this.userService.getAdminBoard().subscribe(
-      data => {
-        this.content =data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
+
+   
+
+  }
+
+  public getUser(){
+    this.reservationService.getUser(this.username).subscribe(user => this.user = user);
+    
+    
+
+  }
+
+  public getAllUsers(){
+    this.reservationService.getAllReservations().subscribe(users => this.users = users);
+  
+    
+    
+
   }
 
 }

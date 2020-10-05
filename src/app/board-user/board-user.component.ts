@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ReservationService } from '../_services/reservation.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-board-user',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardUserComponent implements OnInit {
 
-  constructor() { }
+  users: Observable<any[]>;
+  currentUser: any;
+  username: any;
+
+  constructor(private reserveService: ReservationService, private token: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
+    this.username= this.currentUser.username;
+    this.users = this.reserveService.getReservationByUsername(this.username);
+   
+    
   }
+
+  
 
 }

@@ -15,6 +15,8 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 
 import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
+import { ReservationComponent } from './reservation/reservation.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    ReservationComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
